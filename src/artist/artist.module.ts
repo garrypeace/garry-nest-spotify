@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ArtistService } from './artist.service';
 import { ArtistController } from './artist.controller';
-import { SpotifyCacheInterceptor } from 'src/cache/spotify-cache.interceptor';
 import { SpotifyService } from 'src/spotify/spotify.service';
 import { HttpModule } from '@nestjs/axios';
+import { PrismaModule } from 'src/prisma/prisma.module';
+import { ArtistCacheService } from 'src/cache/artist-cache.service';
 
 @Module({
-  imports: [HttpModule],
+  imports: [HttpModule, PrismaModule],
   controllers: [ArtistController],
-  providers: [ArtistService, SpotifyService],
+  providers: [ArtistService, SpotifyService, ArtistCacheService],
 })
 export class ArtistModule {}
