@@ -1,4 +1,3 @@
-import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 
@@ -6,8 +5,6 @@ import axios from 'axios';
 export class SpotifyService {
   private tokenExpiry: number;
   private accessToken;
-
-  constructor(private http: HttpService) {}
 
   async getAccessToken(): Promise<any> {
     if (this.hasValidToken) {
@@ -41,12 +38,18 @@ export class SpotifyService {
     console.log('Setting access token...');
     this.accessToken = token;
     this.tokenExpiry = Date.now() + expires_in * 1000;
-
-    console.log(this.accessToken, this.tokenExpiry);
   }
 
   get hasValidToken(): boolean {
     const hasExpired = Date.now() > this.tokenExpiry;
+
+    if (hasExpired) {
+      console.log(
+        `Token is now ${
+          (Date.now() - this.tokenExpiry) / 1000 / 60
+        } minutes out of date.`,
+      );
+    }
 
     return this.accessToken && !hasExpired;
   }
@@ -63,6 +66,11 @@ export class SpotifyService {
       url: url,
     };
 
+    console.log(
+      `Making API call to Spotify... (token is valid until ${new Date(
+        this.tokenExpiry,
+      )})`,
+    );
     return await axios(options);
   }
 
