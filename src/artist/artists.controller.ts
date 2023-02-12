@@ -78,7 +78,6 @@ export class ArtistsController {
   @Delete(':id')
   @ApiOkResponse({ type: ArtistEntity })
   remove(@Param('id') id: string) {
-    // TODO: how should we handle deleting record that doesn't exist? 404/204?
     return this.artistsService.remove(id);
   }
 }
