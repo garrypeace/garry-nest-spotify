@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   getHello(): string {
-    return '{"readme":"https://github.com/garrypeace/nestjs-prisma-spotify-api"}';
+    return '{"readme":"https://github.com/garrypeace/garry-nest-spotify#readme"}';
   }
 }

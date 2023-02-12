@@ -7,6 +7,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseFilters,
   UseInterceptors,
 } from '@nestjs/common';
@@ -16,6 +17,7 @@ import {
   ApiBadRequestResponse,
   ApiCreatedResponse,
   ApiOkResponse,
+  ApiQuery,
   ApiTags,
 } from '@nestjs/swagger';
 import { ArtistEntity } from './entities/artist.entity';
@@ -57,8 +59,14 @@ export class ArtistsController {
 
   @Get()
   @ApiOkResponse({ type: ArtistEntity, isArray: true })
-  findAll() {
-    return this.artistsService.findAll();
+  @ApiQuery({
+    name: 'sort',
+    required: false,
+    enum: ['followers', 'popularity'], // TODO: use Typescript Omit utility type?
+  })
+  @ApiQuery({ name: 'direction', required: false, enum: ['asc', 'desc'] })
+  findAll(@Query() query) {
+    return this.artistsService.findAll(query);
   }
 
   @Patch(':id')
