@@ -3,6 +3,10 @@
 - Docker Desktop installed
 
 # In terminal
+
+- Clone repo
+- Create a new .env file in the root (see Privnote url...)
+
 ```
 npm install
 docker-compose up -d
