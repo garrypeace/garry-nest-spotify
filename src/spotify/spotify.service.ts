@@ -12,8 +12,8 @@ export class SpotifyService {
       return this.accessToken;
     }
 
-    const clientId = 'b898d66b4d1e4a55ab2881cd2106810c';
-    const clientSecret = 'cfdf01d7862e4712a754458777e1c881';
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_SECRET;
 
     const options = {
       method: 'POST',
