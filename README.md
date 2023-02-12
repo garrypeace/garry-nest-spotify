@@ -1,3 +1,6 @@
+### I published this Medium article whilst carrying out this project, please check it out if you wish!
+- https://garrypeace.medium.com/crud-api-with-nest-js-prisma-swagger-c74d084935d3
+
 # Pre-requisites
 - Node.js installed (18.13)
 - Docker Desktop installed
@@ -11,7 +14,7 @@
 npm install
 docker-compose up -d
 npx prisma migrate reset
-npm start
+npm run start:dev
 ```
 
 ## Swagger: http://localhost:3000/api
