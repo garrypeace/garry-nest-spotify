@@ -16,8 +16,8 @@ export class ArtistsService {
   }
 
   async findRandom() {
-    const productsCount = await this.prisma.artist.count();
-    const skip = Math.floor(Math.random() * productsCount);
+    const count = await this.prisma.artist.count();
+    const skip = Math.floor(Math.random() * count);
     return await this.prisma.artist.findMany({
       take: 1,
       skip: skip,
@@ -31,11 +31,14 @@ export class ArtistsService {
     return this.prisma.artist.findMany();
   }
 
-  update(id: number, updateArtistDto: UpdateArtistDto) {
-    return `This action updates a #${id} artist`;
+  update(id: string, updateArtistDto: UpdateArtistDto) {
+    return this.prisma.artist.update({
+      where: { id },
+      data: updateArtistDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} artist`;
+  remove(id: string) {
+    return this.prisma.artist.delete({ where: { id } });
   }
 }
