@@ -7,4 +7,10 @@ export class ArtistEntity implements Artist {
 
   @ApiProperty({ required: true })
   name: string;
+
+  @ApiProperty()
+  followers: number;
+
+  @ApiProperty()
+  popularity: number;
 }
