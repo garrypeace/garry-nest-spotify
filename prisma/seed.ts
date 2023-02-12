@@ -4,14 +4,14 @@ const prisma = new PrismaClient();
 
 async function main() {
   console.log('Seeding data...');
-  await prisma.artist.upsert({
-    where: { id: '6zlR5ttMfMNmwf2lecU9Cc' },
-    update: {},
-    create: {
+
+  await prisma.artist.create({
+    data: {
       id: '6zlR5ttMfMNmwf2lecU9Cc',
       name: 'Sam Fender',
     },
   });
+
   console.log('Seeding complete!');
 }
 
