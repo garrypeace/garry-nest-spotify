@@ -11,7 +11,7 @@
 npm install
 docker-compose up -d
 npx prisma migrate reset
-npm start
+npm run start:dev
 ```
 
 ## Swagger: http://localhost:3000/api
